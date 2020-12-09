@@ -10,22 +10,12 @@ import com.clearminds.pg.servicios.ServicioEstudiante;
 
 @Path("/estudiantes")
 public class ServicioPersona {
-//	@Path("/busqueda")
-//	@GET
-//	public String consultar() {
-//		return "Persona";
-//	}
-//	@Path("/recuperar")
-//	@GET
-//	@Produces({MediaType.APPLICATION_JSON})//retorno
-//	public Estudiante recuperar() {
-//		return new Estudiante("Paul","Guaman");
-//	}
+	ServicioEstudiante srvEstudiante= new ServicioEstudiante();
+
 	@Path("/insertar")
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON})//envio
 	public void ingresar(Estudiante persona){
-		ServicioEstudiante srvEstudiante= new ServicioEstudiante();
 		try {
 			srvEstudiante.insertarEstudiante(persona)
 			;
@@ -36,17 +26,18 @@ public class ServicioPersona {
 		}
 	}
 	
-//	@Path("/actualizar")
-//	@PUT
-//	@Consumes({MediaType.APPLICATION_JSON})
-//	@Produces({MediaType.APPLICATION_JSON})
-//	public Estudiante actualizar(Estudiante persona){
-//		System.out.println("Ingresando Persona"+persona);
-//		persona.setNombre(persona.getNombre().toUpperCase());
-//		persona.setApellido(persona.getApellido().toUpperCase());
-//		System.out.println("Persona Modificada"+persona);
-//		return persona;
-//	}
+	@Path("/actualizar")
+	@PUT
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_JSON})
+	public void actualizar(Estudiante persona){
+		try {
+			srvEstudiante.actualizarEstudiante(persona);
+		} catch (BDDExcepcion e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 }
