@@ -11,7 +11,14 @@ import com.clearminds.pg.servicios.ServicioEstudiante;
 @Path("/estudiantes")
 public class ServicioPersona {
 	ServicioEstudiante srvEstudiante= new ServicioEstudiante();
-
+	
+	@Path("/get")
+	@GET
+	public void get(){
+		System.out.println("asdsd");
+	}
+	
+	
 	@Path("/insertar")
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON})//envio
@@ -29,7 +36,6 @@ public class ServicioPersona {
 	@Path("/actualizar")
 	@PUT
 	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
 	public void actualizar(Estudiante persona){
 		try {
 			srvEstudiante.actualizarEstudiante(persona);
